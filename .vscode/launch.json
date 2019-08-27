@@ -5,10 +5,36 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "dotNETCore",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/sidecar/bin/Debug/netcoreapp2.2/sidecar.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "launchBrowser": {
+                "enabled": false
+            }
+        },
+        {
             "type": "node",
             "request": "launch",
-            "name": "Launch Main Program",
+            "name": "NodeJS",
             "program": "${workspaceFolder}\\main\\index.js"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "NodeJS -> .NET Core",
+            "configurations": ["NodeJS", "dotNETCore"]
         }
     ]
 }
