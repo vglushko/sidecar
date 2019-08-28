@@ -1,5 +1,5 @@
 module.exports = {
-    HOSTNAME: '127.0.0.1',
+    HOSTNAME: '0.0.0.0',
     PORT: 8080,
-    REMOTE: 'http://127.0.0.1:5200'
+    REMOTE: 'http://172.17.0.3:5200'
 }

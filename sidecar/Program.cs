@@ -19,17 +19,13 @@ namespace sidecar
 
         private static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
-                .AddJsonFile("appsettings.json")
-                .Build();
+            // var config = new ConfigurationBuilder()
+            //     .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
+            //     .AddJsonFile("appsettings.json")
+            //     .Build();
 
             return WebHost
                 .CreateDefaultBuilder(args)                
-                .UseKestrel(options => 
-                {
-                    options.Listen(IPAddress.Loopback, config.GetValue<int>("Host:Port"));
-                })
                 .UseStartup<Startup>();
         }
     }    

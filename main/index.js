@@ -3,7 +3,9 @@ const config = require('./config.js');
 
 const server = http.createServer((req, res) => {
 
-    if (req.url === '/hello') {
+    console.log(`Requesting: ${req.url}`);
+
+    if (req.url.toLowerCase() === '/hello') {
         http.get(`${config.REMOTE}/hello/hello`, r => {
             let data = '';
 
@@ -14,8 +16,17 @@ const server = http.createServer((req, res) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.end(data);
-            })
-        })
+            });
+        }).on('error', err => {
+            console.log(err);
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/plain');
+            res.end(`Could not connect to the remote host. Original error: "${err.message}"`);
+        });
+    } else if (req.url.toLowerCase() === '/ping') {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('pong');
     } else {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
