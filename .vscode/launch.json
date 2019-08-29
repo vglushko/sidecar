@@ -29,7 +29,7 @@
             "type": "node",
             "request": "launch",
             "name": "NodeJS",
-            "program": "${workspaceFolder}\\main\\index.js"
+            "program": "${workspaceFolder}/main/index.js"
         }
     ],
     "compounds": [

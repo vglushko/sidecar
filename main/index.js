@@ -1,4 +1,5 @@
 const http = require('http');
+const util = require('util');
 const config = require('./config.js');
 
 const server = http.createServer((req, res) => {
@@ -35,4 +36,5 @@ const server = http.createServer((req, res) => {
 
 }).listen(config.PORT, config.HOSTNAME, () => {
     console.log(`Server is running at http://${config.HOSTNAME}:${config.PORT}`);
+    console.log(`Configuration: ${util.inspect(config, false, null, true)}`);
 });
